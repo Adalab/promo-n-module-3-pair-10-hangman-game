@@ -1,6 +1,34 @@
 import '../scss/main.scss';
+import { useState } from 'react';
 
 function App() {
+  const letters = {
+    1: 'k',
+    2: 'a',
+    3: 't',
+    4: 'a',
+    5: 'k',
+    6: 'r',
+    7: 'o',
+    8: 'k',
+    9: 'e',
+    10: 'r'
+  }
+  const  [letter , setLetter] = useState ('')
+  
+  /*for (const eachLetter of letters) {
+    if (letter === eachLetter){
+
+
+    }
+    
+  }*/
+  
+  const handleInput = (ev) => {
+    const inputValue = ev.target.value;
+    setLetter (inputValue);
+  }
+  
   return (
     <div className='page'>
       <header>
@@ -11,22 +39,22 @@ function App() {
           <div className='solution'>
             <h2 className='title'>Solución:</h2>
             <ul className='letters'>
-              <li className='letter'>k</li>
-              <li className='letter'>a</li>
-              <li className='letter'></li>
-              <li className='letter'>a</li>
-              <li className='letter'>k</li>
-              <li className='letter'>r</li>
-              <li className='letter'></li>
-              <li className='letter'>k</li>
-              <li className='letter'>e</li>
-              <li className='letter'>r</li>
+              <li className='letter'>{letter}</li>
+              <li className='letter'>{letter}</li>
+              <li className='letter'>{letter}</li>
+              <li className='letter'>{letter}</li>
+              <li className='letter'>{letter}</li>
+              <li className='letter'>{letter}</li>
+              <li className='letter'>{letter}</li>
+              <li className='letter'>{letter}</li>
+              <li className='letter'>{letter}</li>
+              <li className='letter'>{letter}</li>
             </ul>
           </div>
           <div className='feedback'>
             <h2 className='title'>Letras falladas:</h2>
             <ul className='letters'>
-              <li className='letter'>f</li>
+              <li className='letter'></li>
               <li className='letter'>q</li>
               <li className='letter'>h</li>
               <li className='letter'>p</li>
@@ -43,7 +71,7 @@ function App() {
               maxLength='1'
               type='text'
               name='last-letter'
-              id='last-letter'
+              id='last-letter' onKeyUp={handleInput}
             />
           </form>
         </section>
