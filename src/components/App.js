@@ -2,33 +2,33 @@ import '../scss/main.scss';
 import { useState } from 'react';
 
 function App() {
-  const letters = {
-    1: 'k',
-    2: 'a',
-    3: 't',
-    4: 'a',
-    5: 'k',
-    6: 'r',
-    7: 'o',
-    8: 'k',
-    9: 'e',
-    10: 'r'
-  }
-  const  [letter , setLetter] = useState ('')
-  
-  /*for (const eachLetter of letters) {
-    if (letter === eachLetter){
+  const solution = ['k', 'a', 't', 'a', 'k', 'r', 'o', 'k', 'e', 'r'];
+  const [letter, setLetter] = useState('');
+  const [letters, setLetters] = useState(solution);
+  const [error, setError] = useState([]);
 
-
-    }
-    
-  }*/
-  
   const handleInput = (ev) => {
+    debugger;
     const inputValue = ev.target.value;
-    setLetter (inputValue);
-  }
-  
+    setLetter(inputValue);
+    const letterError = solution.find((cadaLetra) => {
+      return cadaLetra === inputValue;
+    });
+    if (letterError === undefined) {
+      error.push(inputValue);
+      setError([error]);
+    }
+  };
+  const renderSolution = () => {
+    return solution.map((eachLetter, i) => {
+      return (
+        <li className='letter' key={i}>
+          {eachLetter}
+        </li>
+      );
+    });
+  };
+
   return (
     <div className='page'>
       <header>
@@ -38,18 +38,7 @@ function App() {
         <section>
           <div className='solution'>
             <h2 className='title'>Solución:</h2>
-            <ul className='letters'>
-              <li className='letter'>{letter}</li>
-              <li className='letter'>{letter}</li>
-              <li className='letter'>{letter}</li>
-              <li className='letter'>{letter}</li>
-              <li className='letter'>{letter}</li>
-              <li className='letter'>{letter}</li>
-              <li className='letter'>{letter}</li>
-              <li className='letter'>{letter}</li>
-              <li className='letter'>{letter}</li>
-              <li className='letter'>{letter}</li>
-            </ul>
+            <ul className='letters'>{renderSolution()}</ul>
           </div>
           <div className='feedback'>
             <h2 className='title'>Letras falladas:</h2>
@@ -66,12 +55,14 @@ function App() {
               Escribe una letra:
             </label>
             <input
+              value={letter}
               autoComplete='off'
               className='form__input'
               maxLength='1'
               type='text'
               name='last-letter'
-              id='last-letter' onKeyUp={handleInput}
+              id='last-letter'
+              onChange={handleInput}
             />
           </form>
         </section>
