@@ -4,30 +4,56 @@ import { useState } from 'react';
 function App() {
   const solution = ['k', 'a', 't', 'a', 'k', 'r', 'o', 'k', 'e', 'r'];
   const [letter, setLetter] = useState('');
-  const [letters, setLetters] = useState(solution);
+  const [word, setWord] = useState('katakroker');
   const [error, setError] = useState([]);
+  const rightLetters = [];
+
+
+
+  /*const filterLetter = () =>{
+    letters.filter((each) =>{
+      if (letter === each){
+        return rightLetters.push(each);
+        
+      }console.log(rightLetters);
+    })
+  } */
+
 
   const handleInput = (ev) => {
-    debugger;
+ 
     const inputValue = ev.target.value;
     setLetter(inputValue);
     const letterError = solution.find((cadaLetra) => {
       return cadaLetra === inputValue;
     });
     if (letterError === undefined) {
-      error.push(inputValue);
-      setError([error]);
-    }
+        if (inputValue !== '') {
+          error.push(inputValue);
+          setError([error]);
+        }
+   }
   };
-  const renderSolution = () => {
-    return solution.map((eachLetter, i) => {
-      return (
-        <li className='letter' key={i}>
-          {eachLetter}
-        </li>
-      );
-    });
-  };
+//VER POR QUÉ NO COGE EL CONDICIONAL
+
+ /* const renderSolutionLetters = () => {
+    const wordLetters = word.split(''); 
+    return wordLetters.map((eachLetter, i) => {
+      return ( 
+        if(letter === eachLetter){
+
+            <li className='letter' key={i}>
+            {eachLetter}
+            </li>
+        }else{
+            <li className='letter' key={i}>
+            </li>
+          }
+      
+      )
+    
+    })
+  } */
 
   return (
     <div className='page'>
@@ -38,7 +64,7 @@ function App() {
         <section>
           <div className='solution'>
             <h2 className='title'>Solución:</h2>
-            <ul className='letters'>{renderSolution()}</ul>
+            <ul className='letters'>{renderSolutionLetters()}</ul>
           </div>
           <div className='feedback'>
             <h2 className='title'>Letras falladas:</h2>
