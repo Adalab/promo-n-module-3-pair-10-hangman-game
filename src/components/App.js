@@ -36,24 +36,25 @@ function App() {
   };
 //VER POR QUÉ NO COGE EL CONDICIONAL
 
- /* const renderSolutionLetters = () => {
+ const renderSolutionLetters = () => {
     const wordLetters = word.split(''); 
     return wordLetters.map((eachLetter, i) => {
-      return ( 
+      
         if(letter === eachLetter){
-
+          return (
             <li className='letter' key={i}>
             {eachLetter}
-            </li>
+            </li>)
         }else{
+          return (
             <li className='letter' key={i}>
-            </li>
+            </li>)
           }
       
-      )
+      
     
     })
-  } */
+  }
 
   return (
     <div className='page'>
